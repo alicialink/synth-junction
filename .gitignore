@@ -1,0 +1,28 @@
+*.class
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+
+# vim swap
+*.swp
+
+# OS X crap
+.DS_Store
+
+# Execution things
+a.out
+
+# Jupyter things
+*checkpoint.ipynb
+
+# Don't commit generated audio files
+*wav
+
