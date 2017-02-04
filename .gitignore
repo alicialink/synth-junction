@@ -26,3 +26,6 @@ a.out
 # Don't commit generated audio files
 *wav
 
+# JetBrains things
+.idea/
+
