@@ -30,3 +30,4 @@ class Pipeline:
 
 if __name__ == "__main__":
     p = Pipeline(44100, 1.0, 0.5)
+    p.add_sines([440.0]).normalize_to_max_vol().write_to_wav_file("testpipeline.wav")
