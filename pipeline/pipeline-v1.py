@@ -19,7 +19,9 @@ class Pipeline:
         return self
 
     def normalize_to_max_vol(self):
-        intermediate = (self.waveform / np.max(self.waveform)) * self.max_vol
+        intermediate = (self.waveform / np.max(self.waveform))
+        self.waveform = intermediate * self.max_vol
+        mx = np.max(self.waveform)
         return self
 
     def write_to_wav_file(self, filename):
@@ -29,5 +31,10 @@ class Pipeline:
 
 
 if __name__ == "__main__":
-    p = Pipeline(44100, 1.0, 0.5)
-    p.add_sines([440.0]).normalize_to_max_vol().write_to_wav_file("testpipeline.wav")
+    fundamental = 440
+
+    sine = Pipeline(44100, 2.0, 0.1)
+    sine.add_sines([fundamental])
+    sine.normalize_to_max_vol()
+    sine.write_to_wav_file("test-pipeline-sine-2.wav")
+    print "Wrote the sine wave"
