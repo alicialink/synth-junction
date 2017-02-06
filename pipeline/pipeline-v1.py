@@ -21,7 +21,6 @@ class Pipeline:
     def normalize_to_max_vol(self):
         intermediate = (self.waveform / np.max(self.waveform))
         self.waveform = intermediate * self.max_vol
-        mx = np.max(self.waveform)
         return self
 
     def write_to_wav_file(self, filename):
@@ -38,3 +37,10 @@ if __name__ == "__main__":
     sine.normalize_to_max_vol()
     sine.write_to_wav_file("test-pipeline-sine-2.wav")
     print "Wrote the sine wave"
+
+    squarish_harmonics = [h * fundamental for h in range(1, 10) if h % 2 == 1]
+    squarish = Pipeline(44100, 2.0, 0.1)
+    squarish.add_sines(squarish_harmonics)
+    squarish.normalize_to_max_vol()
+    squarish.write_to_wav_file("test-pipeline-squarish.wav")
+    print "Wrote the squarish wave"
