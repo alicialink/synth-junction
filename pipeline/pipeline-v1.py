@@ -18,6 +18,11 @@ class Pipeline:
             self.waveform = np.add(self.waveform, intermediate)
         return self
 
+    def amplitudeModulate(self, freq):
+        modulator = np.sin(2 * np.pi * self.each_sample_number * freq / self.sps)
+        self.waveform = np.multiply(self.waveform, modulator)
+        return self
+
     def normalize_to_max_vol(self):
         intermediate = (self.waveform / np.max(self.waveform))
         self.waveform = intermediate * self.max_vol
@@ -30,18 +35,25 @@ class Pipeline:
 
 
 if __name__ == "__main__":
-    fundamental = 440
+    fundamental = 432
 
-    sine = Pipeline(44100, 2.0, 0.1)
+    sine = Pipeline(44100, 3.0, 0.1)
     sine.add_sines([fundamental])
     sine.normalize_to_max_vol()
-    sine.write_to_wav_file("test-pipeline-sine-2.wav")
+    sine.write_to_wav_file("test-pipeline-sine.wav")
     print "Wrote the sine wave"
+
+    am_sine = Pipeline(44100, 3.0, 0.1)
+    am_sine.add_sines([fundamental])
+    am_sine.amplitudeModulate(2)
+    am_sine.normalize_to_max_vol()
+    am_sine.write_to_wav_file("test-pipeline-AM-sine.wav")
+    print "Wrote the AM sine wave"
 
     max_freq = 20000
     max_harmomic = int(max_freq // fundamental) + 1
     squarish_freqs = [h * fundamental for h in range(1, 10) if h == 1 or h % 2 == 1]
-    squarish = Pipeline(44100, 2.0, 0.1)
+    squarish = Pipeline(44100, 3.0, 0.1)
     squarish.add_sines(squarish_freqs)
     squarish.normalize_to_max_vol()
     squarish.write_to_wav_file("test-pipeline-squarish.wav")
