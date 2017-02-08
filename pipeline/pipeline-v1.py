@@ -43,12 +43,20 @@ if __name__ == "__main__":
     sine.write_to_wav_file("test-pipeline-sine.wav")
     print "Wrote the sine wave"
 
-    am_sine = Pipeline(44100, 3.0, 0.1)
+    am_sine = Pipeline(44100, 10.0, 0.1)
     am_sine.add_sines([fundamental])
     am_sine.amplitudeModulate(2)
     am_sine.normalize_to_max_vol()
     am_sine.write_to_wav_file("test-pipeline-AM-sine.wav")
     print "Wrote the AM sine wave"
+
+    am_am_sine = Pipeline(44100, 10.0, 0.1)
+    am_am_sine.add_sines([fundamental])
+    am_am_sine.amplitudeModulate(3)
+    am_am_sine.amplitudeModulate(1)
+    am_am_sine.normalize_to_max_vol()
+    am_am_sine.write_to_wav_file("test-pipeline-AM-AM-sine.wav")
+    print "Wrote the AM AM sine wave"
 
     max_freq = 20000
     max_harmomic = int(max_freq // fundamental) + 1
