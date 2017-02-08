@@ -40,7 +40,7 @@ if __name__ == "__main__":
 
     max_freq = 20000
     max_harmomic = int(max_freq // fundamental)
-    squarish_freqs = [h * fundamental for h in range(1, 10) if h % 2 == 1]
+    squarish_freqs = [h * fundamental for h in range(1, 10) if h == 1 or h % 2 == 1]
     squarish = Pipeline(44100, 2.0, 0.1)
     squarish.add_sines(squarish_freqs)
     squarish.normalize_to_max_vol()
