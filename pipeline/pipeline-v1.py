@@ -38,9 +38,11 @@ if __name__ == "__main__":
     sine.write_to_wav_file("test-pipeline-sine-2.wav")
     print "Wrote the sine wave"
 
-    squarish_harmonics = [h * fundamental for h in range(1, 10) if h % 2 == 1]
+    max_freq = 20000
+    max_harmomic = int(max_freq // fundamental)
+    squarish_freqs = [h * fundamental for h in range(1, 10) if h % 2 == 1]
     squarish = Pipeline(44100, 2.0, 0.1)
-    squarish.add_sines(squarish_harmonics)
+    squarish.add_sines(squarish_freqs)
     squarish.normalize_to_max_vol()
     squarish.write_to_wav_file("test-pipeline-squarish.wav")
     print "Wrote the squarish wave"
