@@ -1,0 +1,14 @@
+.pure-g > div {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.l-box {
+  padding: 1em;
+}
+
+html, button, input, select, textarea, .pure-g [class *= "pure-u"] {
+  /* Set your content font stack here: */
+  font-family: 'Noto Sans', sans-serif;
+}

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>FM-ize Me</title>
+  <link rel="stylesheet" href="https://unpkg.com/purecss@0.6.2/build/pure-min.css" integrity="sha384-UQiGfs9ICog+LwheBSRCt1o5cbyKIHbwjWscjemyBMT9YCUMZffs6UqUTd0hObXD" crossorigin="anonymous">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
+
+
+      <link rel="stylesheet" href="css/style.css">
+
+
+</head>
+
+<body>
+  <div class="pure-g">
+  <div class="pure-u-1-1 l-box" style="background-color: #aae;">Frequency Modulation</div>
+</div>
+<div class="pure-g">
+  <div class="pure-u-1-5 l-box">
+    <h1>Signal</h1>
+    <form class="pure-form pure-form-stacked">
+      <fieldset>
+        <legend>Carrier</legend>
+        <label for="carrier-frequency">Frequency 15 - 60 s<sup>-1</sup></label>
+        <input id="carrier-frequency" placeholder="0" type="number" min="15" max="60" step="1" class="pure-u-1-1">
+
+        <legend>Baseband</legend>
+        <label for="baseband-frequency">Frequency 1 - 10 s<sup>-1</sup></label>
+        <input id="baseband-frequency" placeholder="0" type="number" min="1" max="10" step="1" class="pure-u-1-1">
+
+        <button class="pure-button pure-button-primary" id="calculate-btn">Calculate in</button>
+      </fieldset>
+    </form>
+  </div>
+  <div class="pure-u-4-5 l-box">
+    <h1>The Plot</h1>
+    <canvas id="canvas" height="250" width="777" style="margin: 1em;"></canvas>
+    <p>Width is 1 second.</p>
+  </div>
+</div>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
+
+    <script src="js/index.js"></script>
+
+</body>
+</html>
