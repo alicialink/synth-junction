@@ -18,8 +18,11 @@ $(document).ready(function () {
   $('#calculate-btn').click(function (ev) {
     ev.preventDefault()
 
-    basebandFrequency = parseInt($('#baseband-frequency').val(), 10)
-    carrierFrequency = parseInt($('#carrier-frequency').val(), 10)
+    basebandFrequency = parseFloat($('#baseband-frequency').val())
+    basebandDeviation = parseFloat($('#baseband-deviation').val())
+    basebandAmplitude = parseFloat($('#baseband-amplitude').val())
+    carrierFrequency = parseFloat($('#carrier-frequency').val())
+    carrierAmplitude = parseFloat($('#carrier-amplitude').val())
 
     plotAll()
   })
@@ -42,7 +45,7 @@ $(document).ready(function () {
 
       plotSinusoid(carrierFrequency, '#eee')
       plotSinusoid(basebandFrequency, '#ddd')
-      plotFM(carrierFrequency, basebandFrequency, '#000')
+      plotFM('#000')
     }
 
     function plotSinusoid(freq, waveStyle) {
@@ -61,14 +64,15 @@ $(document).ready(function () {
       ctx.stroke()
     }
 
-    function plotFM(carrierFreq, basebandFreq, waveStyle) {
+    function plotFM(waveStyle) {
+      const coeff = basebandAmplitude * basebandDeviation / basebandFrequency
       const amplitude = height * 0.9
       ctx.strokeStyle = waveStyle
       ctx.lineWidth = midlineStrokeWidth
       ctx.beginPath()
       ctx.moveTo(0, height / 2)
       for (let x = 0; x < width; x++) {
-        const sval = Math.cos((2 * carrierFreq * Math.PI * x / width) + Math.sin(2 * basebandFreq * Math.PI * x / width) / basebandFreq)
+        const sval = Math.cos((2 * carrierFrequency * Math.PI * x / width) + coeff * Math.sin(2 * basebandFrequency * Math.PI * x / width))
         const y = sval * (amplitude / 2) + height / 2
         ctx.lineTo(x, y)
       }
