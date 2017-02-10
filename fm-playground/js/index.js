@@ -1,12 +1,19 @@
 $(document).ready(function () {
   let carrierFrequency = 15
   let basebandFrequency = 2
+  let basebandDeviation = 1
+  let basebandAmplitude = 1
+  let carrierAmplitude = 1
 
   const midlineStrokeStyle = '#0000BB'
   const midlineStrokeWidth = 1
 
-  $('#baseband-frequency').val(basebandFrequency)
+  $('#carrier-amplitude').val(carrierAmplitude)
   $('#carrier-frequency').val(carrierFrequency)
+  $('#baseband-frequency').val(basebandFrequency)
+  $('#baseband-deviation').val(basebandDeviation)
+  $('#baseband-amplitude').val(basebandAmplitude)
+
 
   $('#calculate-btn').click(function (ev) {
     ev.preventDefault()
