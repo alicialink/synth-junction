@@ -29,3 +29,6 @@ a.out
 # JetBrains things
 .idea/
 
+# Node modules
+node_modules/
+
